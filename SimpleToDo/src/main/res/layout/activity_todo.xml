@@ -1,0 +1,35 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TodoActivity"
+    tools:ignore="MergeRootFrame" >
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
+        android:id="@+id/lvItems"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/etNewItem"
+        android:layout_alignLeft = "@+id/lvItems"
+        android:layout_below = "@+id/lvItems"
+        android:layout_marginTop = "14dp"
+        android:ems = "10"
+        android:hint="@string/enter_new_item" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add"
+        android:id="@+id/btnAddItem"
+        android:layout_marginRight="20dp"
+        android:layout_alignBaseline="@+id/etNewItem"
+        android:layout_alignRight="@+id/lvItems"
+        android:onClick="addTodoItem" />
+</RelativeLayout>
