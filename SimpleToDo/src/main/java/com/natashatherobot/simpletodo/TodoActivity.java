@@ -1,6 +1,7 @@
 package com.natashatherobot.simpletodo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -98,6 +99,12 @@ public class TodoActivity extends ActionBarActivity {
         etNewItem.setText("");
     }
 
+    public void launchEditItemView(String item) {
+        Intent i = new Intent(TodoActivity.this, EditItemActivity.class);
+        i.putExtra("item", item);
+        startActivity(i);
+    }
+
     private void setupsListViewListener() {
 
         lvItems.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -107,6 +114,13 @@ public class TodoActivity extends ActionBarActivity {
                 itemsAdapter.notifyDataSetChanged();
                 saveItems();
                 return true;
+            }
+        });
+
+        lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                launchEditItemView(items.get(position));
             }
         });
 

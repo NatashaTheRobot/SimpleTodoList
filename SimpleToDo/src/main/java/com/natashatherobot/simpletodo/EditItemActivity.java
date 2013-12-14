@@ -10,8 +10,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class EditItemActivity extends ActionBarActivity {
+
+    String item;
+    EditText etItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +28,11 @@ public class EditItemActivity extends ActionBarActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+
+        etItem = (EditText)findViewById(R.id.etItem);
+        item = getIntent().getStringExtra("item");
+        etItem.setText(item, TextView.BufferType.EDITABLE);
+        etItem.setSelection(item.length());
     }
 
 
@@ -60,6 +70,15 @@ public class EditItemActivity extends ActionBarActivity {
             View rootView = inflater.inflate(R.layout.fragment_edit_item, container, false);
             return rootView;
         }
+    }
+
+    public void onSubmit(View v) {
+        this.finish();
+    }
+
+    public void saveItem(View v) {
+
+        onSubmit(v);
     }
 
 }

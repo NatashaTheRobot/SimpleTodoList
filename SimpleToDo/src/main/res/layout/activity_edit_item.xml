@@ -32,5 +32,6 @@
         android:text="Save"
         android:id="@+id/bSave"
         android:layout_below="@id/etItem"
-        android:layout_alignLeft="@id/etItem" />
+        android:layout_alignLeft="@id/etItem"
+        android:onClick="saveItem"/>
 </RelativeLayout>
