@@ -1,5 +1,6 @@
 package com.natashatherobot.simpletodo;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -76,12 +77,16 @@ public class EditItemActivity extends ActionBarActivity {
     }
 
     public void onSubmit(View v) {
+        setResult(RESULT_CANCELED);
         this.finish();
     }
 
     public void saveItem(View v) {
-
-        onSubmit(v);
+        Intent data = new Intent();
+        data.putExtra("item", etItem.getText().toString());
+        data.putExtra("position", position);
+        setResult(RESULT_OK, data);
+        this.finish();
     }
 
 }

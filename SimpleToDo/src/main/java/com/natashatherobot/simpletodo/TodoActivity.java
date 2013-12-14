@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -33,6 +34,8 @@ public class TodoActivity extends ActionBarActivity {
     ArrayList<String> items;
     ArrayAdapter<String> itemsAdapter;
     ListView lvItems;
+
+    private final int REQUEST_CODE = 20;
 
 
     @Override
@@ -103,7 +106,19 @@ public class TodoActivity extends ActionBarActivity {
         Intent i = new Intent(TodoActivity.this, EditItemActivity.class);
         i.putExtra("position", position);
         i.putExtra("item", items.get(position));
-        startActivity(i);
+        startActivityForResult(i, REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+            int position = data.getIntExtra("position", 0);
+            String item = data.getStringExtra("item");
+            items.set(position, item);
+            itemsAdapter.notifyDataSetChanged();
+            saveItems();
+            Toast.makeText(this, item, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void setupsListViewListener() {
