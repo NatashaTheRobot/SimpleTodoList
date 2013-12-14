@@ -16,6 +16,7 @@ import android.widget.TextView;
 public class EditItemActivity extends ActionBarActivity {
 
     String item;
+    int position;
     EditText etItem;
 
     @Override
@@ -29,8 +30,10 @@ public class EditItemActivity extends ActionBarActivity {
                     .commit();
         }
 
-        etItem = (EditText)findViewById(R.id.etItem);
         item = getIntent().getStringExtra("item");
+        position = getIntent().getIntExtra("position", 0);
+
+        etItem = (EditText)findViewById(R.id.etItem);
         etItem.setText(item, TextView.BufferType.EDITABLE);
         etItem.setSelection(item.length());
     }

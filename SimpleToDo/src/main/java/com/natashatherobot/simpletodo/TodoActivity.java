@@ -99,9 +99,10 @@ public class TodoActivity extends ActionBarActivity {
         etNewItem.setText("");
     }
 
-    public void launchEditItemView(String item) {
+    public void launchEditItemView(int position) {
         Intent i = new Intent(TodoActivity.this, EditItemActivity.class);
-        i.putExtra("item", item);
+        i.putExtra("position", position);
+        i.putExtra("item", items.get(position));
         startActivity(i);
     }
 
@@ -120,7 +121,7 @@ public class TodoActivity extends ActionBarActivity {
         lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                launchEditItemView(items.get(position));
+                launchEditItemView(position);
             }
         });
 
